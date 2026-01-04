@@ -39,6 +39,10 @@
       VIRTIO_ISO="$VM_DIR/virtio-win.iso"
       NOVNC_DIR="$HOME/noVNC"
 
+     OVMF_CODE = "${pkgs.ovmf}/share/OVMF/OVMF_CODE.fd";
+     OVMF_VARS = "${pkgs.ovmf}/share/OVMF/OVMF_VARS.fd";
+
+
       mkdir -p "$VM_DIR"
       
 
@@ -104,6 +108,9 @@
         \
         -drive file="$VIRTIO_ISO",media=cdrom,if=none,id=cd2 \
         -device ide-cd,drive=cd2,bus=ide.1 \
+        \
+        -drive if=pflash,format=raw,readonly=on,file=$OVMF_CODE \
+        -drive if=pflash,format=raw,file=$OVMF_VARS \
         \
         -boot order=d \
         \
