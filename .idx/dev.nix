@@ -39,8 +39,9 @@
       VIRTIO_ISO="$VM_DIR/virtio-win.iso"
       NOVNC_DIR="$HOME/noVNC"
 
-     OVMF_CODE = "${pkgs.ovmf}/share/OVMF/OVMF_CODE.fd";
-     OVMF_VARS = "${pkgs.ovmf}/share/OVMF/OVMF_VARS.fd";
+      OVMF_CODE="${pkgs.ovmf}/share/OVMF/OVMF_CODE.fd"
+      OVMF_VARS="${pkgs.ovmf}/share/OVMF/OVMF_VARS.fd"
+
 
 
       mkdir -p "$VM_DIR"
