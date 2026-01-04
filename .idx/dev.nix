@@ -38,8 +38,31 @@
       VIRTIO_ISO="$VM_DIR/virtio-win.iso"
       NOVNC_DIR="$HOME/noVNC"
 
-      OVMF_CODE = "${pkgs.ovmf.fdCode}";
-      OVMF_VARS = "${pkgs.ovmf.fdVars}";
+     
+     OVMF_DIR="$HOME/qemu/ovmf"
+     OVMF_CODE="$OVMF_DIR/OVMF_CODE.fd"
+     OVMF_VARS="$OVMF_DIR/OVMF_VARS.fd"
+
+     mkdir -p "$OVMF_DIR"
+
+     # =========================
+     # Download OVMF firmware if missing
+     # =========================
+     if [ ! -f "$OVMF_CODE" ]; then
+        echo "Downloading OVMF_CODE.fd..."
+        wget -O "$OVMF_CODE" \
+          https://qemu.weilnetz.de/test/ovmf/usr/share/OVMF/OVMF_CODE.fd
+        else
+          echo "OVMF_CODE.fd already exists, skipping download."
+     fi
+
+     if [ ! -f "$OVMF_VARS" ]; then
+       echo "Downloading OVMF_VARS.fd..."
+       wget -O "$OVMF_VARS" \
+         https://qemu.weilnetz.de/test/ovmf/usr/share/OVMF/OVMF_VARS.fd
+     else
+       echo "OVMF_VARS.fd already exists, skipping download."
+     fi
 
       mkdir -p "$VM_DIR"
 
