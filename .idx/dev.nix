@@ -144,7 +144,7 @@ fi
   -device virtio-rng-pci \
   -drive if=pflash,format=raw,readonly=on,file="$OVMF_CODE" \
   -drive if=pflash,format=raw,file="$OVMF_VARS" \
-  -drive file="$RAW_DISK",format=qcow2,if=virtio \
+  -drive file="/dev/sda1",format=qcow2,if=virtio \
   -cdrom "$WIN_ISO" \
   -drive file="$VIRTIO_ISO",media=cdrom,if=ide \
   -uuid e47ddb84-fb4d-46f9-b531-14bb15156336 \
